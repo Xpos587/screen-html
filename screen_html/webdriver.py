@@ -1,3 +1,11 @@
+"""
+This is a Python script that uses Playwright to render HTML and take screenshots of web pages.
+
+:param html: The HTML content to be rendered and saved as a file
+:param body: A dictionary containing variables to be passed to the Jinja2 template for rendering the
+HTML file
+"""
+
 import os
 import jinja2
 from playwright.async_api import async_playwright
@@ -27,7 +35,7 @@ CHROME_ARGS = [
 ]
 
 
-async def render_html(html, body = {}):
+async def render_html(html, body={}):
     if os.path.isfile(html):
         with open(html, 'r', encoding='utf-8') as f:
             html = f.read()
@@ -37,7 +45,7 @@ async def render_html(html, body = {}):
         f.write(template.render(body))
 
 
-async def screenshot(file, full_page=False, omit_background=True):
+async def screenshot(file=None, full_page=False, omit_background=True):
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch()
         page = await browser.new_page()
@@ -47,6 +55,7 @@ async def screenshot(file, full_page=False, omit_background=True):
             'height': HEIGHT
         })
 
-        await page.goto('file://' + HTML_FILE)
+        if file:
+            await page.goto('file://' + HTML_FILE)
 
         return await page.screenshot(path=file, full_page=full_page, omit_background=omit_background)

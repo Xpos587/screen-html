@@ -4,6 +4,33 @@
 
 [![PyPi Version](https://img.shields.io/pypi/v/minecraft-monitoring-api.svg)](https://pypi.org/project/screen-html/)
 
+<img src="https://raw.githubusercontent.com/Xpos587/screen-html/main/screen.png?raw=true" alt></img>
+
+This is a Python script that uses Async Playwright to render HTML and convert it into an image.
+
+## Features:
+- Support css
+- Support just html and html files
+- Using jinja2
+- Screenshot can be taken with omit_background and full_page options
+- Change user-agent support
+
+## Documentation:
+Examples can be found in the /examples directory.
+
+Regular Example:
+```python 
+import screen_html as sh
+import asyncio
+
+
+async def main():
+    await sh.render_html('<html><body><h1>{{ h1 }}</h1></body></html>', {'h1': 'Hello world!'})
+    await sh.screenshot('./screen.png', omit_background=False)
+
+asyncio.run(main())
+```
+
 ## Copyright:
 This program is licensed under the MIT.
 

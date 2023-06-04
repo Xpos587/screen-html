@@ -5,7 +5,7 @@ from pathlib import Path
 import glob
 
 # note: build this package with the following command:
-# pip wheel --no-deps -w dist .
+# python setup.py sdist bdist_wheel.
 
 base_path = Path(__file__).parent
 long_description = (base_path / 'README.md').read_text()
@@ -15,7 +15,7 @@ setuptools.setup(
     version='0.1.0',
     author='Xpos587',
     license='MIT',
-    # ! description=,
+    description='This is a Python script that uses Playwright to render HTML and convert it into an image.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     classifiers=[
@@ -30,6 +30,6 @@ setuptools.setup(
     # },
     include_package_data=True,
     # py_modules=['screen_html'],
-    install_requires=['jinja2', 'playwright'],
-    url='https://github.com/Xpos587/minecraft-monitoring-api'
+    install_requires=['Jinja2', 'playwright'],
+    url='https://github.com/Xpos587/screen-html'
 )
